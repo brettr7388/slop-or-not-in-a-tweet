@@ -8,6 +8,9 @@ assertTargetAllowed(BASE);
 const { chromium, webkit, devices } = await import('playwright');
 const { mkdirSync } = await import('node:fs');
 const { default: assert } = await import('node:assert/strict');
+const { bannerGeometry, assertBanners } = await import('./banner-check.mjs');
+const { client } = await import('./api-client.mjs');
+const api = client(BASE);
 
 const SHOTS = process.env.SHOTS_DIR ?? 'screenshots/mobile';
 mkdirSync(SHOTS, { recursive: true });
@@ -45,6 +48,7 @@ for (const [slug, name, engine] of DEVICES) {
 
   await page.tap('[data-action="start"]');
   let targets = 0;
+  const banners = [];
   for (let round = 1; round <= 10; round++) {
     await page.waitForSelector('[data-action="guess"]:not([disabled])');
     await page.waitForFunction(() => document.querySelector('.frame img').complete);
@@ -52,18 +56,40 @@ for (const [slug, name, engine] of DEVICES) {
     assert.equal(fit, 'contain', 'portrait shows the whole image');
     targets = (await check(page, `${name} round ${round}`)).targets.length;
     if (round === 1) await shot(page, `${slug}-round`);
-    await page.tap(`[data-action="guess"][data-arg="${round % 2 ? 'ai' : 'real'}"]`);
+    const truth = api.answerFor(await page.getAttribute('.frame img', 'src'));
+    const pick = round === 1 ? truth : round === 2 ? (truth === 'ai' ? 'real' : 'ai') : round % 2 ? 'ai' : 'real';
+    await page.tap(`[data-action="guess"][data-arg="${pick}"]`);
     await page.waitForSelector('.reveal');
+    await page.waitForTimeout(350);
     await check(page, `${name} reveal ${round}`);
+    banners.push(await bannerGeometry(page));
+    if (round === 2) banners.push(await bannerGeometry(page, { long: true }));
     if (round === 1) await shot(page, `${slug}-reveal`);
+    if (round === 2) await shot(page, `${slug}-reveal-nope`);
     await page.tap('[data-action="next"]');
   }
+  assertBanners(assert, banners, name);
   await page.waitForSelector('.big-score');
   await page.waitForFunction(() => !document.querySelector('.board li.muted')?.textContent.startsWith('Loading'));
   const end = await check(page, `${name} end`);
   await shot(page, `${slug}-end`);
   const audio = await page.evaluate(() => document.documentElement.dataset.audio);
 
+  if (process.env.L2_SHOTS) {
+    await page.tap('[data-action="start"][data-arg="2"]');
+    for (let round = 1; round <= 10; round++) {
+      await page.waitForFunction((r) => document.querySelector('.bar')?.textContent.includes(`${r}/10`) && document.querySelector('[data-action="guess"]:not([disabled])'), round);
+      await page.tap(`[data-action="guess"][data-arg="${round <= 3 ? 'real' : 'ai'}"]`);
+      await page.waitForSelector('.reveal.lock');
+    }
+    await page.waitForSelector('.end.l2');
+    await page.waitForFunction(() => !document.querySelector('.board li.muted')?.textContent.startsWith('Loading'));
+    assert.equal((await page.textContent('.big-score')).trim(), '7/10');
+    assert.equal((await page.textContent('.tagline')).trim(), 'Fooled you 3/10.');
+    await check(page, `${name} L2 end`);
+    await shot(page, `${slug}-l2-end`);
+    await page.tap('[data-action="start"][data-arg="1"]');
+  }
   await page.tap('.mute');
   assert.equal(await page.getAttribute('.mute', 'aria-pressed'), 'true');
   await page.reload();

@@ -30,17 +30,20 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #101014; col
 .frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .controls { display: flex; gap: 12px; flex: none; height: 56px; }
 .controls .btn-primary { flex: 1; font-size: 20px; }
-.reveal { position: absolute; left: 0; right: 0; bottom: 0; padding: 10px 14px; background: rgba(0,0,0,.78); animation: rise .18s ease-out; }
+.reveal { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; max-height: 100%; padding: 10px 14px; background: rgba(0,0,0,.78);
+  display: flex; flex-direction: column; justify-content: center; animation: rise .18s ease-out; }
 .frame::after { content: ""; position: absolute; inset: 0; border-radius: 12px; pointer-events: none; box-shadow: inset 0 0 0 0 transparent; }
-.frame.good::after { box-shadow: inset 0 0 0 5px #4ade80; animation: pulse .32s ease-out; }
-.frame.bad::after { box-shadow: inset 0 0 0 5px #f87171; animation: shake .3s ease-out; }
-.frame.lock::after { box-shadow: inset 0 0 0 5px #8a8aa0; }
+.frame { --ring: transparent; }
+.frame.good { --ring: #4ade80; }
+.frame.bad { --ring: #f87171; }
+.frame.lock { --ring: #8a8aa0; }
+/* Same box model and animation for every verdict; only the colour changes. The ring sits above the banner. */
+.frame.good::after, .frame.bad::after, .frame.lock::after { z-index: 2; box-shadow: inset 0 0 0 5px var(--ring); animation: pulse .32s ease-out; }
 .reveal.lock { text-align: center; }
 .reveal.lock .verdict { color: #e5e5ee; }
 @keyframes rise { from { transform: translateY(100%); } to { transform: none; } }
-@keyframes pulse { from { box-shadow: inset 0 0 0 14px #4ade80; } }
-@keyframes shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
-.reveal .verdict { font-size: 22px; font-weight: 800; }
+@keyframes pulse { from { box-shadow: inset 0 0 0 12px var(--ring); } }
+.reveal .verdict { font-size: 22px; font-weight: 800; line-height: 1.2; overflow-wrap: anywhere; }
 .reveal.good .verdict { color: #4ade80; }
 .reveal.bad .verdict { color: #f87171; }
 .reveal .credit { font-size: 12px; color: #c9c9d6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -49,7 +52,8 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #101014; col
 .end { flex: 1; display: grid; grid-template-columns: 1.1fr 1fr; gap: 16px; padding: 14px; min-height: 0; }
 .result { display: flex; flex-direction: column; justify-content: center; gap: 10px; min-width: 0; }
 .big-score { font-size: 88px; font-weight: 900; color: #ffd23f; line-height: .95; letter-spacing: -.02em; animation: pop .35s cubic-bezier(.2,1.6,.4,1); }
-.end.l2 .big-score { color: #ff6b6b; font-size: 72px; }
+.end.l2 .big-score { font-size: 72px; }
+.score-label { margin: -4px 0 0; color: #ffd23f; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: .08em; }
 .kicker { margin: 0; font-size: 24px; font-weight: 800; }
 .dots { display: flex; gap: 5px; }
 .dots i { width: 14px; height: 14px; border-radius: 50%; background: #f87171; }

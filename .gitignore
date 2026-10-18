@@ -5,3 +5,4 @@ raw/**/*.jpg
 screenshots/
 *.log
 __pycache__/
+backups/

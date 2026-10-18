@@ -212,10 +212,12 @@ function endView() {
         <button class="btn btn-primary" ${state.submitting ? 'disabled' : ''}>Save</button>
       </form>
       ${state.error ? `<p class="error">${esc(state.error)}</p>` : ''}`;
+  // Level 2 has one meaning everywhere: the score is AI spotted (higher is better); fooled = 10 - spotted.
   const headline = l2
     ? `<p class="kicker">All 10 were AI.</p>
-       <div class="big-score">${fooled}/10</div>
-       <p class="tagline">You called ${fooled} real.</p>`
+       <div class="big-score">${state.score}/10</div>
+       <p class="score-label">AI spotted</p>
+       <p class="tagline">Fooled you ${fooled}/10.</p>`
     : `<div class="big-score">${state.score}/10</div>`;
   return `${header()}
   <section class="end ${l2 ? 'l2' : ''}">

@@ -8,6 +8,7 @@ const { chromium } = await import('playwright');
 const { copyFileSync, mkdirSync } = await import('node:fs');
 const { default: assert } = await import('node:assert/strict');
 const { client } = await import('./api-client.mjs');
+const { bannerGeometry, assertBanners } = await import('./banner-check.mjs');
 
 const SHOTS = process.env.SHOTS_DIR ?? 'screenshots';
 const NICK = process.env.E2E_NICK ?? `Tester${Math.floor(Math.random() * 900 + 100)}`;
@@ -92,6 +93,7 @@ async function playGame(browser, nickname, { shots = false, level2 = null } = {}
 
   let expected = 0, hardSeen = 0;
   const seen = new Set();
+  const banners = [];
   for (let round = 1; round <= 10; round++) {
     await page.waitForSelector('[data-action="guess"]');
     await page.waitForFunction(() => document.querySelector('.frame img').complete);
@@ -101,9 +103,15 @@ async function playGame(browser, nickname, { shots = false, level2 = null } = {}
     if (api.isHard(src)) hardSeen++;
     await assertFits(page, `round ${round}`);
     if (shots && round === 1) await page.screenshot({ animations: 'disabled', path: `${SHOTS}/round.png` });
-    const choice = round % 2 ? 'ai' : 'real';
+    // Round 1 right, round 2 wrong, then alternate, so both banners are always seen.
+    const truthNow = api.answerFor(src);
+    const choice = round === 1 ? truthNow : round === 2 ? (truthNow === 'ai' ? 'real' : 'ai') : round % 2 ? 'ai' : 'real';
     await page.click(`[data-action="guess"][data-arg="${choice}"]`);
     await page.waitForSelector('.reveal');
+    await page.waitForTimeout(350);
+    banners.push(await bannerGeometry(page));
+    if (round === 2) banners.push(await bannerGeometry(page, { long: true }));
+    if (shots && round === 2) await page.screenshot({ animations: 'disabled', path: `${SHOTS}/reveal-nope.png` });
     const verdict = await page.textContent('.reveal .verdict');
     const truth = api.answerFor(src);
     assert.equal(verdict.trim(), `${choice === truth ? 'Yep' : 'Nope'}, ${truth === 'ai' ? 'AI' : 'real'}`, 'server verdict is right');
@@ -115,6 +123,8 @@ async function playGame(browser, nickname, { shots = false, level2 = null } = {}
     await page.click('[data-action="next"]');
   }
   assert.equal(seen.size, 10, '10 distinct images');
+  const { good, bad } = assertBanners(assert, banners, '640x480');
+  log(`reveal banners: Yep and Nope text both at ${bad.inset}px inside the banner, a 2-line Nope wraps without clipping`);
   assert.ok(hardSeen >= 2 && hardSeen <= 3, `level 1 had ${hardSeen} hard AI images`);
   await page.waitForSelector('.big-score');
   assert.equal(await page.textContent('.big-score'), `${expected}/10`);
@@ -173,8 +183,13 @@ async function playLevel2(page, nickname, shots) {
   await page.waitForSelector('.end.l2');
   assert.equal((await page.textContent('.kicker')).trim(), 'All 10 were AI.');
   assert.equal(await page.evaluate(() => window.__sfx.at(-1)), 'allAi');
-  assert.equal((await page.textContent('.big-score')).trim(), `${fooled}/10`);
-  assert.equal((await page.textContent('.tagline')).trim(), `You called ${fooled} real.`);
+  const spotted = 10 - fooled;
+  assert.equal((await page.textContent('.big-score')).trim(), `${spotted}/10`, 'big number = AI spotted');
+  assert.equal((await page.textContent('.score-label')).trim(), 'AI spotted');
+  assert.equal((await page.textContent('.tagline')).trim(), `Fooled you ${fooled}/10.`);
+  const dotsSeen = await page.$$eval('.dots i', (els) => els.map((e) => e.className));
+  assert.equal(dotsSeen.filter((c) => c === 'good').length, spotted, 'green dots = spotted');
+  assert.equal(dotsSeen.filter((c) => c === 'bad').length, fooled, 'red dots = fooled');
   assert.match(await page.textContent('.board h2'), /Level 2/);
   await page.waitForFunction(() => !document.querySelector('.board li.muted')?.textContent.startsWith('Loading'));
   await assertFits(page, 'L2 end');
@@ -186,10 +201,16 @@ async function playLevel2(page, nickname, shots) {
   if (err) throw new Error(`L2 submit failed: ${await err.textContent()}`);
   const mine = await page.$$eval('.board li.me', (els) => els.map((e) => e.textContent.trim()));
   assert.equal(mine.length, 1);
-  assert.ok(mine[0].includes(nickname) && mine[0].endsWith(String(10 - fooled)), `L2 board stores AI spotted = ${10 - fooled}`);
+  assert.ok(mine[0].includes(nickname) && mine[0].endsWith(String(spotted)), `L2 board stores AI spotted = ${spotted}`);
+  const boardScores = await page.$$eval('.board li b', (els) => els.map((e) => Number(e.textContent)));
+  assert.deepEqual(boardScores, [...boardScores].sort((a, b) => b - a), 'AI spotted board ranked descending');
   if (shots) await page.screenshot({ animations: 'disabled', path: `${SHOTS}/l2-leaderboard.png` });
   const href = decodeURIComponent(await page.getAttribute('.btn-share', 'href'));
   assert.ok(href.includes(`/s2/${fooled}`) && href.includes(`Fooled ${fooled}/10. Can you?`));
+  const sharePage = await (await fetch(`${BASE}/s2/${fooled}`)).text();
+  assert.match(sharePage, new RegExp(`<title>Fooled ${fooled}/10\\. Can you\\?</title>`));
+  assert.match(sharePage, new RegExp(`/share/l2-${fooled}\\.png`));
+  log(`L2 end: ${spotted}/10 AI spotted, ${spotted} green + ${fooled} red dots, "Fooled you ${fooled}/10."; share /s2/${fooled} -> l2-${fooled}.png "Fooled ${fooled}/10" agrees`);
   const buttons = await page.$$eval('.end .row .btn', (els) => els.map((e) => e.textContent.trim()));
   assert.deepEqual(buttons, ['Share', 'Again']);
   return { fooled };
