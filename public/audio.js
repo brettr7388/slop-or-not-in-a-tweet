@@ -1,12 +1,14 @@
-// Background loop (public/audio/loop.mp3, made by scripts/build-audio.py) plus WebAudio-synthesized SFX.
-// One AudioContext for the page. The loop is fetched and decoded once; nothing plays before the Play tap.
-const LOOP_START = 0.25; // the file is periodic, so any 12 s window loops without a seam
-const LOOP_LEN = 12;
-const MUSIC_LEVEL = 0.32;
+// Music: a looping <audio> element (public/audio/loop.mp3, built by scripts/build-loop.py from the trailer's bed).
+// SFX: synthesized with WebAudio.
+//
+// Why the music is an <audio> element and not WebAudio: on iPhone, Web Audio alone is treated as
+// "ambient" sound, so the ring/silent switch mutes it, and in-app browsers (X) behave the same way.
+// A playing media element puts the page in the "playback" audio session, which plays with the switch
+// on silent and lets the WebAudio effects through too. Everything starts synchronously inside a tap
+// (touchend / pointerup / click), never after an await, and nothing is created before the first tap.
 const KEY = 'slop-muted';
-
 const AC = window.AudioContext || window.webkitAudioContext;
-let ctx = null, master = null, musicGain = null, loop = null, music = null, wantMusic = false;
+let ctx = null, master = null, music = null, wantMusic = false, primed = false;
 let muted = false;
 try { muted = localStorage.getItem(KEY) === '1'; } catch {}
 
@@ -14,57 +16,87 @@ function status(state) {
   document.documentElement.dataset.audio = state;
 }
 
-function ensure() {
+function element() {
+  if (music) return music;
+  music = new Audio();
+  music.loop = true;
+  music.preload = 'auto';
+  music.setAttribute('playsinline', '');
+  music.muted = muted;
+  music.addEventListener('playing', () => status(muted ? 'muted' : 'playing'));
+  music.addEventListener('error', () => status('no-music'));
+  music.src = '/audio/loop.mp3';
+  return music;
+}
+
+function context() {
   if (ctx || !AC) return ctx;
-  ctx = new AC();
-  master = ctx.createGain();
-  master.gain.value = muted ? 0 : 1;
-  master.connect(ctx.destination);
-  musicGain = ctx.createGain();
-  musicGain.gain.value = 0;
-  musicGain.connect(master);
-  fetch('/audio/loop.mp3')
-    .then((r) => r.arrayBuffer())
-    .then((data) => new Promise((ok, bad) => ctx.decodeAudioData(data, ok, bad)))
-    .then((buf) => { loop = buf; if (wantMusic) startMusic(); })
-    .catch(() => status('no-music'));
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) ctx.suspend();
-    else if (wantMusic) ctx.resume();
-  });
+  try {
+    ctx = new AC();
+    master = ctx.createGain();
+    master.gain.value = muted ? 0 : 1;
+    master.connect(ctx.destination);
+  } catch { ctx = null; }
   return ctx;
 }
 
-// Call from inside a tap handler: browsers only let audio start on a user gesture.
+function playMusic() {
+  const m = element();
+  if (!m.paused) return;
+  const p = m.play();
+  if (p) p.catch(() => status('blocked'));
+}
+
+// Call from inside a tap handler. Safe to call many times.
 export function unlock() {
-  if (!ensure()) return;
-  if (ctx.state !== 'running') ctx.resume();
+  try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch {}
+  if (context()) {
+    if (ctx.state !== 'running') ctx.resume().catch(() => {});
+    if (!primed) { // a one-sample silent buffer started in the gesture unlocks WebAudio on older iOS
+      primed = true;
+      const src = ctx.createBufferSource();
+      src.buffer = ctx.createBuffer(1, 1, 22050);
+      src.connect(ctx.destination);
+      src.start(0);
+    }
+  }
+  if (wantMusic && !muted) playMusic();
 }
 
 export function startMusic() {
   wantMusic = true;
-  if (!ensure() || music || !loop) return;
-  music = ctx.createBufferSource();
-  music.buffer = loop;
-  music.loop = true;
-  music.loopStart = LOOP_START;
-  music.loopEnd = LOOP_START + LOOP_LEN;
-  music.connect(musicGain);
-  music.start(0, LOOP_START);
-  musicGain.gain.setTargetAtTime(MUSIC_LEVEL, ctx.currentTime, 0.6);
-  status(muted ? 'muted' : 'playing');
+  unlock();
 }
 
 export function isMuted() {
   return muted;
 }
 
+export function isPlaying() {
+  return !!music && !music.paused;
+}
+
 export function setMuted(value) {
   muted = value;
   try { localStorage.setItem(KEY, value ? '1' : '0'); } catch {}
-  if (ctx) master.gain.setTargetAtTime(value ? 0 : 1, ctx.currentTime, 0.03);
-  if (music) status(value ? 'muted' : 'playing');
+  if (master) master.gain.value = value ? 0 : 1;
+  if (music) music.muted = value;
+  if (value) status(music ? 'muted' : 'ready');
+  else { wantMusic = true; unlock(); if (music && !music.paused) status('playing'); }
 }
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) { music?.pause(); ctx?.suspend().catch(() => {}); }
+  else if (wantMusic && !muted) { ctx?.resume().catch(() => {}); music?.play().catch(() => {}); }
+});
+
+// Read by the tests.
+window.__audio = () => ({
+  ctx: ctx?.state ?? null,
+  master: master ? master.gain.value : null,
+  music: music && { paused: music.paused, time: music.currentTime, muted: music.muted, volume: music.volume, ready: music.readyState },
+  muted,
+});
 
 function tone(type, from, to, start, dur, level, filter) {
   const t = ctx.currentTime + start;
@@ -88,7 +120,6 @@ function tone(type, from, to, start, dur, level, filter) {
   osc.start(t);
   osc.stop(t + dur + 0.02);
 }
-
 const note = (m) => 440 * 2 ** ((m - 69) / 12);
 
 const SFX = {
@@ -111,6 +142,4 @@ export function sfx(name) {
   SFX[name]?.();
 }
 
-// Create the context and start decoding the loop early (it stays suspended until a tap).
-ensure();
 status('ready');

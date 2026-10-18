@@ -1,0 +1,15 @@
+# Local mirror of the REST-API deploy: deploy/entry.js serves public/ from the D1 table static_assets
+# (no ASSETS binding), exactly like the live Worker. Load the table with `npm run dev:d1-assets:load`,
+# then `npx wrangler dev -c wrangler.d1-assets.toml --port 8788`.
+name = "slop-or-not"
+main = "deploy/entry.js"
+compatibility_date = "2025-09-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "slop-or-not"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+[vars]
+X_HANDLE = "@Bro7388"

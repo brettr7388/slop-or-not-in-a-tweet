@@ -14,7 +14,7 @@ After a game, **Level 2** is offered. It looks the same, but all 10 images are A
 
 ### Sound and phones
 
-- **Sound:** a 12-second lo-fi loop (`public/audio/loop.mp3`, 79 KB) that is synthesized from scratch by `scripts/build-audio.py`, plus WebAudio-synthesized effects in `public/audio.js` (tap, correct, wrong, score reveal, Level 2 unlock, "All 10 were AI."). Nothing plays until the Play tap. The page uses one AudioContext, decodes the loop once, and resumes audio on each tap (iOS needs that). The mute button in the top-right corner is saved in `localStorage`. In Level 2 every answer makes the same neutral "locked in" sound.
+- **Sound:** the same lo-fi music as the trailer, as a seamless 24-second loop (`public/audio/loop.mp3`, 235 KB, built by `scripts/build-loop.py` from the bed that `scripts/build-audio.py` synthesizes), plus WebAudio-synthesized effects in `public/audio.js` (tap, correct, wrong, score reveal, Level 2 unlock, "All 10 were AI."). Nothing is created or played before the first tap. The music plays through an `<audio>` element, not WebAudio, because iPhones mute Web Audio alone with the silent switch (and in-app browsers like X behave the same); a playing media element puts the page in the "playback" audio session (plus `navigator.audioSession.type = 'playback'` where supported), which also lets the effects through. Audio starts synchronously inside the tap (`touchend`, `pointerup`, `click`), never after an await. The speaker button starts the sound if it is not running yet, otherwise toggles mute (red crossed icon, `aria-pressed`), saved in `localStorage`. In Level 2 every answer makes the same neutral "locked in" sound. The D1-served static files support byte-range requests (206), which iOS needs for media elements.
 - **Portrait phones** (mobile Safari, Chrome, the X in-app browser): full-height layout using `100dvh` and safe-area insets, big buttons, the whole image shown (`object-fit: contain`), and no scrolling.
 - **The card on a phone:** X's own panel covers about the bottom 30% of the player. On a touch device the card keeps every control in the top 70% (`html.card-touch`), and a compact layout handles the scaled-down ~360x270 card.
 
@@ -105,6 +105,8 @@ The e2e script:
 - Tries a forged score, a replayed submit, out-of-order and parallel guesses, a profane name, and bursts of submits and session starts.
 
 Screenshots go to `screenshots/`.
+
+`npm run test:audio` (local only: it refuses non-local URLs because it starts games) checks the sound on an iPhone 14 (WebKit) and in a 640x480 cross-origin iframe like the X card (WebKit and Chromium): after the Play tap the AudioContext is running, master gain is above 0 and the music element is playing with its time advancing; the speaker toggles icon, `aria-pressed`, gain and element mute; and on a fresh page the speaker alone starts audio. Run it against `npx wrangler dev -c wrangler.d1-assets.toml --port 8788` after `node scripts/load-local-assets.mjs`, which mirrors the live D1-served static files.
 
 `npm run test:mobile` (needs `npx playwright install webkit chromium`) plays a game as an iPhone 14 (WebKit) and a Pixel 7 (Chromium) in portrait. It checks that nothing scrolls, that every tap target is at least 44x44 px, that audio starts, and that mute survives a reload. It then plays both levels on a touch card at 640x480, and in a 360x270 frame, and checks that every control sits in the top 70%. These scripts never submit a name, so they can run against the live site with `--allow-remote` without touching the leaderboard.
 

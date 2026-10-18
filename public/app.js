@@ -1,4 +1,4 @@
-import { unlock, startMusic, sfx, isMuted, setMuted } from './audio.js';
+import { unlock, startMusic, sfx, isMuted, isPlaying, setMuted } from './audio.js';
 
 const ROUNDS = 10;
 const LOCK_MS = 550;
@@ -104,8 +104,11 @@ function next() {
   render();
 }
 
+// The speaker always does something: if sound is on but not running yet, the tap starts it;
+// otherwise it toggles mute. Runs inside the tap, so the audio can start.
 function mute() {
-  setMuted(!isMuted());
+  if (!isMuted() && !isPlaying()) startMusic();
+  else setMuted(!isMuted());
   const button = app.querySelector('.mute');
   if (button) button.outerHTML = muteButton();
 }
@@ -245,8 +248,9 @@ function render() {
   app.innerHTML = view();
 }
 
-// Resume audio inside the gesture itself (iOS needs that), before the click handler runs.
-app.addEventListener('pointerdown', unlock);
+// Unlock audio inside the gesture itself. iOS only counts touchend / pointerup / click as a user
+// activation (not pointerdown or touchstart), so listen on all three; unlock() is idempotent.
+for (const type of ['touchend', 'pointerup']) app.addEventListener(type, unlock, { passive: true });
 
 app.addEventListener('click', (event) => {
   unlock();

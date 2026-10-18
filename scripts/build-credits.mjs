@@ -32,7 +32,7 @@ const lines = [
   '',
   'No third-party audio. Everything is made by this project and dedicated to the public domain (CC0 1.0).',
   '',
-  '- `public/audio/loop.mp3`: a 12-second lo-fi loop (electric piano chords, bass, drums, vinyl hiss) synthesized from scratch with numpy by `scripts/build-audio.py`, encoded to a small mono MP3 with no metadata.',
+  '- `public/audio/loop.mp3`: the lo-fi music bed from lab\'s trailer (electric piano chords, bass, drums, vinyl hiss), made by this project: synthesized from scratch with numpy by `scripts/build-audio.py`, then cut into a seamless 24-second loop (two 12-second cycles, 80 ms crossfade at the loop point) by `scripts/build-loop.py` from the trailer\'s 48 kHz bed, encoded to an 80 kbps mono MP3 with no metadata.',
   '- Sound effects (tap, correct, wrong, score reveal, Level 2 unlock, "All 10 were AI." reveal and the neutral Level 2 "locked in"): synthesized in the browser with WebAudio oscillators in `public/audio.js`. No files.',
   '',
 ];

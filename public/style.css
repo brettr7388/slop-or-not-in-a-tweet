@@ -7,7 +7,7 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #101014; col
 .bar .logo { color: #ffd23f; letter-spacing: .06em; margin-right: auto; }
 .mute { appearance: none; border: 0; background: transparent; color: #c9c9d6; width: 44px; height: 44px; margin: -10px -12px -10px -6px;
   display: inline-flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 10px; }
-.mute[aria-pressed="true"] { color: #6b6b80; }
+.mute[aria-pressed="true"] { color: #f87171; }
 .btn { min-height: 44px; appearance: none; border: 0; border-radius: 12px; padding: 12px 18px; font-family: inherit; font-weight: 700; font-size: 17px; line-height: 1;
   background: #2a2a35; color: #fff; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
 .btn:active { transform: scale(.97); }

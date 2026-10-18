@@ -1,7 +1,7 @@
 """Synthesizes the lo-fi background loop (public/audio/loop.mp3). No samples, no third-party audio.
 
 The track is periodic with period CYCLE seconds. We render three cycles and keep cycle two plus one
-second, so the client can loop any CYCLE-long window (see LOOP_* in public/audio.js) without a seam,
+second, so any CYCLE-long window loops without a seam (scripts/build-loop.py cuts the game loop from it),
 whatever padding the MP3 decoder adds at the start.
 """
 import numpy as np, subprocess, pathlib
