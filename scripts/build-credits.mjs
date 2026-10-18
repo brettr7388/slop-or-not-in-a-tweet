@@ -28,6 +28,12 @@ const lines = [
   '| File | Subject | Prompt |',
   '| --- | --- | --- |',
   ...ai.map((c) => `| \`${c.file}\` | ${cell(c.subject)}${c.hard ? ' *(hard)*' : ''} | ${cell(c.prompt)} |`),
+  '',  '## Audio',
+  '',
+  'No third-party audio. Everything is made by this project and dedicated to the public domain (CC0 1.0).',
+  '',
+  '- `public/audio/loop.mp3`: a 12-second lo-fi loop (electric piano chords, bass, drums, vinyl hiss) synthesized from scratch with numpy by `scripts/build-audio.py`, encoded to a small mono MP3 with no metadata.',
+  '- Sound effects (tap, correct, wrong, score reveal, Level 2 unlock, "All 10 were AI." reveal and the neutral Level 2 "locked in"): synthesized in the browser with WebAudio oscillators in `public/audio.js`. No files.',
   '',
 ];
 writeFileSync('CREDITS.md', lines.join('\n'));

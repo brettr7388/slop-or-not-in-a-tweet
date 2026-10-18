@@ -110,6 +110,8 @@ async function guess(request, env) {
     'UPDATE sessions SET round = round + 1, score = score + ?1 WHERE id = ?2 AND round = ?3',
   ).bind(correct ? 1 : 0, session.id, parsed.round).run();
   if (update.meta.changes !== 1) return json({ ok: false, error: 'out_of_order' }, 409);
+  await env.DB.prepare('INSERT INTO guesses (image, level, guess, correct, ts) VALUES (?1, ?2, ?3, ?4, ?5)')
+    .bind(image.f, session.level, parsed.guess, correct ? 1 : 0, now).run();
 
   const round = parsed.round + 1;
   const done = round === ROUNDS;
@@ -155,7 +157,23 @@ async function submitScore(request, env) {
   return fail('rate_limited', 429);
 }
 
+// Public stats are aggregate score distributions only. Per-image numbers would reveal the answer key,
+// so they are only available to the repo owner via `npm run stats`.
+async function stats(_request, env) {
+  const { results } = await env.DB.prepare(
+    'SELECT level, score, COUNT(*) AS n FROM scores GROUP BY level, score',
+  ).all();
+  const levels = {};
+  for (const level of [1, 2]) {
+    const dist = Array(ROUNDS + 1).fill(0);
+    for (const row of results) if (row.level === level) dist[row.score] = row.n;
+    levels[level] = { games: dist.reduce((a, b) => a + b, 0), distribution: dist };
+  }
+  return json({ ok: true, levels });
+}
+
 const ROUTES = {
+  'GET /api/stats': stats,
   'GET /api/leaderboard': leaderboard,
   'GET /api/preview': preview,
   'POST /api/session': createSession,

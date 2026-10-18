@@ -5,6 +5,7 @@ from fetch_commons import UA, PEOPLE, strip_html, get
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 RAW = ROOT / "raw" / "perfect"
+# Search terms only; subjects in candidates.json were corrected after review (e.g. the "rainbow eucalyptus" hit is a lorikeet).
 TERMS = ["milky way night sky", "aurora borealis", "dew drops macro", "hummingbird", "lavender field", "kingfisher", "jellyfish", "rainbow eucalyptus"]
 
 def main(per_term):

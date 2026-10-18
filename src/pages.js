@@ -37,7 +37,8 @@ export function playPage(origin, site) {
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#101014">
     <title>${esc(title)}</title>
     <meta name="description" content="${esc(description)}">
     ${cardTags({ origin, title, description, image: `${origin}/card.png`, pageUrl: `${origin}/play`, site })}

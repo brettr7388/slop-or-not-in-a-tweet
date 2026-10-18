@@ -18,7 +18,7 @@ export function d1Assets(db) {
       return new Response(request.method === 'HEAD' ? null : bytes, {
         headers: {
           'content-type': row.type,
-          'cache-control': /^\/(img|share)\//.test(pathname) || pathname === '/card.png' ? LONG : SHORT,
+          'cache-control': /^\/(img|share|audio)\//.test(pathname) || pathname === '/card.png' ? LONG : SHORT,
           'x-content-type-options': 'nosniff',
         },
       });

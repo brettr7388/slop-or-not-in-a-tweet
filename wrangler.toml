@@ -14,4 +14,4 @@ migrations_dir = "migrations"
 
 [vars]
 # Your X handle for the twitter:site tag, e.g. "@yourhandle". Leave empty to omit the tag.
-X_HANDLE = ""
+X_HANDLE = "@Bro7388"

@@ -6,7 +6,7 @@ import { join, extname } from 'node:path';
 
 const { CLOUDFLARE_API_TOKEN: token, CLOUDFLARE_ACCOUNT_ID: account, D1_DATABASE_ID: db } = process.env;
 if (!token || !account || !db) throw new Error('Set CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID and D1_DATABASE_ID');
-export const TYPES = { '.jpg': 'image/jpeg', '.png': 'image/png', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8' };
+export const TYPES = { '.jpg': 'image/jpeg', '.png': 'image/png', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.mp3': 'audio/mpeg' };
 export const SCHEMA = 'CREATE TABLE IF NOT EXISTS static_assets (path TEXT PRIMARY KEY, type TEXT NOT NULL, body TEXT NOT NULL)';
 const UPSERT = 'INSERT INTO static_assets (path, type, body) VALUES (?1, ?2, ?3) ON CONFLICT(path) DO UPDATE SET type = ?2, body = ?3';
 

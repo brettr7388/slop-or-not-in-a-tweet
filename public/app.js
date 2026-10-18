@@ -1,8 +1,22 @@
+import { unlock, startMusic, sfx, isMuted, setMuted } from './audio.js';
+
 const ROUNDS = 10;
 const LOCK_MS = 550;
 const app = document.getElementById('app');
 const framed = window.self !== window.top;
 if (framed) document.documentElement.classList.add('framed');
+
+// On phones, X's own panel covers roughly the bottom 30% of the in-post player. When the card is
+// shown on a touch device, the CSS keeps every control in the top 70% (html.card-touch).
+const touch = matchMedia('(pointer: coarse)').matches || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+function fitCard() {
+  const landscape = innerWidth > innerHeight;
+  const root = document.documentElement;
+  root.classList.toggle('card-touch', touch && landscape && (framed || innerHeight <= 600));
+  root.classList.toggle('card-tiny', innerHeight <= 380);
+}
+fitCard();
+addEventListener('resize', fitCard);
 
 document.addEventListener('click', (event) => {
   if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -42,6 +56,8 @@ const MESSAGES = {
 
 async function start(level = 1) {
   level = Number(level) || 1;
+  startMusic();
+  sfx(level === 2 ? 'unlock' : 'tap');
   const after = level === 2 ? state.session : undefined;
   state = { phase: 'loading', level };
   render();
@@ -58,6 +74,7 @@ async function start(level = 1) {
 async function guess(choice) {
   if (state.phase !== 'guess' || state.pending) return;
   state = { ...state, pending: true };
+  sfx('tap');
   const data = await api('/api/guess', { session: state.session, round: state.i, guess: choice }).catch(() => null);
   if (!data?.ok) {
     state = { ...state, pending: false, error: MESSAGES[data?.error] ?? 'Tap again.' };
@@ -69,6 +86,7 @@ async function guess(choice) {
     ...state, pending: false, error: null, phase: 'reveal', result: data,
     score: data.score ?? state.score, marks: [...state.marks, mark],
   };
+  sfx(data.locked ? 'locked' : data.correct ? 'correct' : 'wrong');
   render();
   // Level 2: neutral "Locked in", then move on by itself. Nothing is revealed until the end.
   if (data.locked) setTimeout(next, LOCK_MS);
@@ -78,6 +96,7 @@ function next() {
   if (state.phase !== 'reveal') return;
   if (state.result?.done) {
     state = { ...state, phase: 'end' };
+    sfx(state.level === 2 ? 'allAi' : 'reveal');
     loadLeaderboard();
   } else {
     state = { ...state, phase: 'guess', i: state.i + 1, result: null };
@@ -85,7 +104,13 @@ function next() {
   render();
 }
 
-const actions = { start, guess, next };
+function mute() {
+  setMuted(!isMuted());
+  const button = app.querySelector('.mute');
+  if (button) button.outerHTML = muteButton();
+}
+
+const actions = { start, guess, next, mute };
 
 async function loadLeaderboard() {
   const data = await api(`/api/leaderboard?level=${state.level}`).catch(() => null);
@@ -109,7 +134,16 @@ function header() {
   const tag = state.level === 2 && state.phase !== 'start' ? '<span class="tag">Level 2</span>' : '';
   const round = inGame ? `<span>${state.i + 1}/${ROUNDS}</span>` : '';
   const score = inGame && state.level === 1 ? `<span class="pts">${state.score} pt${state.score === 1 ? '' : 's'}</span>` : '';
-  return `<header class="bar"><strong class="logo">SLOP OR NOT</strong>${tag}${round}${score}</header>`;
+  return `<header class="bar"><strong class="logo">SLOP OR NOT</strong>${tag}${round}${score}${muteButton()}</header>`;
+}
+
+const SPEAKER = '<path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/>';
+function muteButton() {
+  const off = isMuted();
+  const waves = off
+    ? '<path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'
+    : '<path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>';
+  return `<button class="mute" data-action="mute" aria-label="${off ? 'Unmute' : 'Mute'}" aria-pressed="${off}"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">${SPEAKER}${waves}</svg></button>`;
 }
 
 function startView() {
@@ -209,7 +243,11 @@ function render() {
   app.innerHTML = view();
 }
 
+// Resume audio inside the gesture itself (iOS needs that), before the click handler runs.
+app.addEventListener('pointerdown', unlock);
+
 app.addEventListener('click', (event) => {
+  unlock();
   const button = event.target.closest('[data-action]');
   if (button && !button.disabled) actions[button.dataset.action](button.dataset.arg);
 });

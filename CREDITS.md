@@ -50,7 +50,7 @@ All are CC0 or public domain on Wikimedia Commons, with no identifiable people. 
 | `img/ddcc824a7308aeee.jpg` | autumn forest | Martin Vorel | CC0 1.0 | [Commons](https://commons.wikimedia.org/wiki/File:Autumn_Forest_Wet_Bark.jpg) |
 | `img/e4bd695587057bb9.jpg` | dog | Wilfredor | CC0 1.0 | [Commons](https://commons.wikimedia.org/wiki/File:Dog_in_Chacachacare.jpg) |
 | `img/e85f950f745198f0.jpg` | horse | Bernard Gagnon | CC0 1.0 | [Commons](https://commons.wikimedia.org/wiki/File:Horse_in_T%C3%A1rcoles_River.jpg) |
-| `img/eb5f4c5a4628a342.jpg` | rainbow eucalyptus *(too perfect)* | John Robert McPherson | CC0 1.0 | [Commons](https://commons.wikimedia.org/wiki/File:Scaly-breasted_lorikeet_in_Callistemon_viminalis_River_of_Life_Church_240_Hamilton_Rd_Chermside_P1170530.jpg) |
+| `img/eb5f4c5a4628a342.jpg` | lorikeet *(too perfect)* | John Robert McPherson | CC0 1.0 | [Commons](https://commons.wikimedia.org/wiki/File:Scaly-breasted_lorikeet_in_Callistemon_viminalis_River_of_Life_Church_240_Hamilton_Rd_Chermside_P1170530.jpg) |
 | `img/ebe304bc34bb0d23.jpg` | bicycle | Wilfredor | CC0 1.0 | [Commons](https://commons.wikimedia.org/wiki/File:Bike_on_a_snowy_street_in_Quebec_City_at_night.jpg) |
 | `img/ed5f2ef7698a8473.jpg` | beach sunset | Wilfredor | CC0 1.0 | [Commons](https://commons.wikimedia.org/wiki/File:Juan_Griego_Sunset.jpg) |
 | `img/fbe0e1f41bfd4106.jpg` | dog | Wilfredor | CC0 1.0 | [Commons](https://commons.wikimedia.org/wiki/File:Mixed-breed_dogs_in_Serles.jpg) |
@@ -117,3 +117,10 @@ Generated for this project with Grok Imagine and dedicated to the public domain 
 | `img/f825584d9829793d.jpg` | snowy mountains | Photorealistic photo of snowy alpine mountain peaks with a small wooden hut in the valley, bright winter day, no people, no text |
 | `img/fad64dd5cf81e640.jpg` | half-empty supermarket parking lot *(hard)* | Half-empty supermarket parking lot. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces. |
 | `img/ff90be46a320b987.jpg` | library shelves | Photorealistic photo of tall wooden library shelves full of old books in a historic reading room, warm lamps, empty room, no people, no readable text |
+
+## Audio
+
+No third-party audio. Everything is made by this project and dedicated to the public domain (CC0 1.0).
+
+- `public/audio/loop.mp3`: a 12-second lo-fi loop (electric piano chords, bass, drums, vinyl hiss) synthesized from scratch with numpy by `scripts/build-audio.py`, encoded to a small mono MP3 with no metadata.
+- Sound effects (tap, correct, wrong, score reveal, Level 2 unlock, "All 10 were AI." reveal and the neutral Level 2 "locked in"): synthesized in the browser with WebAudio oscillators in `public/audio.js`. No files.

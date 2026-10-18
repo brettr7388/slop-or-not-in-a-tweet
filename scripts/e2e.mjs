@@ -23,7 +23,7 @@ async function checkNoAnswerLeaks() {
     assert.equal(res.status, 404, `${path} is not served`);
   }
   const leak = /"(a|answer|label)"\s*:|\b(ai|real)-\d\d\b/;
-  for (const path of ['/play', '/app.js', '/s/7', '/s2/7', '/api/preview', '/api/leaderboard', '/api/leaderboard?level=2']) {
+  for (const path of ['/play', '/app.js', '/s/7', '/s2/7', '/api/preview', '/api/leaderboard', '/api/leaderboard?level=2', '/api/stats']) {
     const body = await (await fetch(`${BASE}${path}`)).text();
     assert.doesNotMatch(body, leak, `${path} carries no answer field`);
   }
@@ -46,6 +46,13 @@ async function checkCardRoute() {
   assert.match(body, /<meta name="twitter:player:width" content="640">/);
   assert.match(body, /<meta name="twitter:player:height" content="480">/);
   assert.doesNotMatch(body, /twitter:player:stream/);
+  assert.match(body, /<meta name="twitter:site" content="@Bro7388">/);
+  const mp3 = await fetch(`${BASE}/audio/loop.mp3`);
+  const bytes = (await mp3.arrayBuffer()).byteLength;
+  assert.equal(mp3.status, 200); assert.equal(mp3.headers.get('content-type'), 'audio/mpeg');
+  const audioJs = (await (await fetch(`${BASE}/audio.js`)).arrayBuffer()).byteLength;
+  assert.ok(bytes + audioJs < 300_000, 'audio under 300 KB');
+  log(`twitter:site @Bro7388; /audio/loop.mp3 audio/mpeg ${bytes} B + audio.js ${audioJs} B`);
   log('/play as Twitterbot: CSP', JSON.stringify(csp), 'no X-Frame-Options, one player card at 640x480');
 
   const shareBody = await (await fetch(`${BASE}/s/7`, { headers: { 'user-agent': 'Twitterbot/1.0' } })).text();
@@ -79,7 +86,9 @@ async function playGame(browser, nickname, { shots = false, level2 = null } = {}
   await page.waitForFunction(() => [...document.querySelectorAll('.mosaic img')].every((i) => i.complete));
   await assertFits(page, 'start');
   if (shots) await page.screenshot({ animations: 'disabled', path: `${SHOTS}/start.png` });
+  assert.equal(await page.evaluate(() => (window.__sfx ?? []).length), 0, 'no sound before the Play tap');
   await page.click('[data-action="start"]');
+  await page.waitForFunction(() => document.documentElement.dataset.audio === 'playing', null, { timeout: 5000 });
 
   let expected = 0, hardSeen = 0;
   const seen = new Set();
@@ -99,6 +108,7 @@ async function playGame(browser, nickname, { shots = false, level2 = null } = {}
     const truth = api.answerFor(src);
     assert.equal(verdict.trim(), `${choice === truth ? 'Yep' : 'Nope'}, ${truth === 'ai' ? 'AI' : 'real'}`, 'server verdict is right');
     if (choice === truth) expected++;
+    assert.equal(await page.evaluate(() => window.__sfx.at(-1)), choice === truth ? 'correct' : 'wrong');
     assert.match(await page.textContent('.bar'), new RegExp(`${expected} pts?`));
     if (shots && round === 1) await page.screenshot({ animations: 'disabled', path: `${SHOTS}/reveal.png` });
     await assertFits(page, `reveal ${round}`);
@@ -108,6 +118,7 @@ async function playGame(browser, nickname, { shots = false, level2 = null } = {}
   assert.ok(hardSeen >= 2 && hardSeen <= 3, `level 1 had ${hardSeen} hard AI images`);
   await page.waitForSelector('.big-score');
   assert.equal(await page.textContent('.big-score'), `${expected}/10`);
+  assert.equal(await page.evaluate(() => window.__sfx.at(-1)), 'reveal');
 
   await page.fill('input[name="name"]', nickname);
   await page.waitForFunction(() => !document.querySelector('.board li.muted')?.textContent.startsWith('Loading'));
@@ -134,6 +145,7 @@ async function playGame(browser, nickname, { shots = false, level2 = null } = {}
 
 async function playLevel2(page, nickname, shots) {
   await page.click('[data-action="start"][data-arg="2"]');
+  assert.equal(await page.evaluate(() => window.__sfx.at(-1)), 'unlock');
   let fooled = 0;
   const seen = new Set();
   for (let round = 1; round <= 10; round++) {
@@ -148,8 +160,10 @@ async function playLevel2(page, nickname, shots) {
     if (shots && round === 1) await page.screenshot({ animations: 'disabled', path: `${SHOTS}/l2-round.png` });
     const choice = round % 3 === 1 ? 'real' : 'ai';
     if (choice === 'real') fooled++;
+    const before = await page.evaluate(() => window.__sfx.length);
     await page.click(`[data-action="guess"][data-arg="${choice}"]`);
     await page.waitForSelector('.reveal.lock');
+    assert.deepEqual(await page.evaluate((n) => window.__sfx.slice(n), before), ['tap', 'locked'], 'L2 sounds the same for any answer');
     assert.equal((await page.textContent('.reveal')).trim(), 'Locked in', 'neutral feedback, no answer');
     if (shots && round === 1) await page.screenshot({ animations: 'disabled', path: `${SHOTS}/l2-locked.png` });
     await page.waitForFunction((r) => document.querySelector('#app').dataset.phase === 'end'
@@ -158,6 +172,7 @@ async function playLevel2(page, nickname, shots) {
   assert.equal(seen.size, 10);
   await page.waitForSelector('.end.l2');
   assert.equal((await page.textContent('.kicker')).trim(), 'All 10 were AI.');
+  assert.equal(await page.evaluate(() => window.__sfx.at(-1)), 'allAi');
   assert.equal((await page.textContent('.big-score')).trim(), `${fooled}/10`);
   assert.equal((await page.textContent('.tagline')).trim(), `You called ${fooled} real.`);
   assert.match(await page.textContent('.board h2'), /Level 2/);
@@ -307,6 +322,38 @@ async function checkGuards() {
   assert.ok(top.every((r) => Number.isInteger(r.score) && r.score >= 0 && r.score <= 10 && !/sh1t|Quitter|Forger2/.test(r.name)));
 }
 
+// Local-only: reads the wrangler dev D1 directly.
+async function checkGuessLog() {
+  const { execFileSync } = await import('node:child_process');
+  const d1 = (sql) => JSON.parse(execFileSync('npx', ['wrangler', 'd1', 'execute', 'slop-or-not', '--local', '--json', '--command', sql], { encoding: 'utf8' }))[0].results;
+  const count = () => d1('SELECT COUNT(*) AS n FROM guesses')[0].n;
+  const cols = d1("SELECT name FROM pragma_table_info('guesses')").map((c) => c.name);
+  assert.deepEqual(cols, ['id', 'image', 'level', 'guess', 'correct', 'ts'], 'guesses holds no IP, session or name');
+  const ip = randomIp();
+  const before = count();
+  await api.finishedSession(4, ip);
+  assert.equal(count(), before + 10, 'one row per graded guess');
+  const last = d1('SELECT image, level, guess, correct FROM guesses ORDER BY id DESC LIMIT 10');
+  assert.equal(last.reduce((a, g) => a + g.correct, 0), 4);
+  assert.ok(last.every((g) => g.correct === (g.guess === api.answerFor(`/${g.image}`) ? 1 : 0)));
+
+  const old = Date.now() - 3 * 86_400_000;
+  d1(`INSERT INTO sessions (id, deck, ip_hash, created_at) VALUES ('${'e'.repeat(32)}', '[]', 'old', ${old}); INSERT INTO guesses (image, level, guess, correct, ts) VALUES ('img/old.jpg', 1, 'ai', 1, ${old})`);
+  await api.post('/api/session', {}, ip); // starting a session runs the daily cleanup
+  assert.equal(d1(`SELECT COUNT(*) AS n FROM sessions WHERE id = '${'e'.repeat(32)}'`)[0].n, 0, 'old session pruned');
+  assert.equal(d1("SELECT COUNT(*) AS n FROM guesses WHERE image = 'img/old.jpg'")[0].n, 1, 'old guess kept');
+  d1("DELETE FROM guesses WHERE image = 'img/old.jpg'");
+  log('guesses: +10 rows per game (image, level, guess, correct, ts only); daily cleanup pruned a 3-day-old session but kept a 3-day-old guess');
+
+  const pub = (await api.call('GET', '/api/stats')).body;
+  assert.deepEqual(Object.keys(pub.levels), ['1', '2']);
+  assert.ok(pub.levels[1].distribution.length === 11 && pub.levels[1].games > 0);
+  assert.doesNotMatch(JSON.stringify(pub), /img\/|fooled|answer|"ai"|"real"/, 'public stats are aggregate only');
+  const priv = JSON.parse(execFileSync('node', ['scripts/stats.mjs', '--json'], { encoding: 'utf8' }));
+  assert.ok(priv.guesses >= 10 && priv.images.every((i) => i.answer && i.fooled_pct >= 0 && i.fooled_pct <= 100));
+  log(`/api/stats: score distributions only (L1 ${pub.levels[1].games} games, L2 ${pub.levels[2].games}); npm run stats: ${priv.guesses} guesses over ${priv.images.length} image/level rows`);
+}
+
 async function checkDuplicateNameHighlight(browser) {
   const ip = randomIp();
   const twin = await api.post('/api/score', { session: await api.finishedSession(10, ip), name: 'Twin' }, ip);
@@ -328,6 +375,7 @@ try {
   if (!process.argv.includes('--no-guards')) {
     await checkGuards();
     await checkLevel2Api();
+    await checkGuessLog();
     await checkDuplicateNameHighlight(browser);
   }
   console.log('\nall e2e checks passed');
