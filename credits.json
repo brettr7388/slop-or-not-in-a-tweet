@@ -1,0 +1,940 @@
+[
+  {
+    "file": "img/00599ca738ce03dd.jpg",
+    "answer": "ai",
+    "subject": "mountain lake",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic landscape photo of a calm mountain lake with pine trees and reflections, late afternoon light, DSLR, natural colors, no people, no text"
+  },
+  {
+    "file": "img/008099e2e4cf9275.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "suburban backyard",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Suburban backyard. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/01472775a2f2528e.jpg",
+    "answer": "ai",
+    "subject": "sand dunes desert",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of rippled sand dunes in a desert under a clear blue sky, harsh midday sun, tire tracks faintly visible, no people, no text"
+  },
+  {
+    "file": "img/01bb64e94efebe33.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "view from a window onto a courtyard",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "View from a window onto a courtyard. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/06b295d4441557cb.jpg",
+    "answer": "real",
+    "subject": "cathedral interior",
+    "title": "Canterbury Cathedral Tower Ceiling.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Canterbury_Cathedral_Tower_Ceiling.jpg",
+    "license": "CC0 1.0",
+    "author": "Michael D Beckwith"
+  },
+  {
+    "file": "img/092738d81be9b576.jpg",
+    "answer": "ai",
+    "subject": "pizza",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic overhead phone photo of a homemade margherita pizza on a wooden board on a kitchen table, slightly uneven crust, natural window light, no people, no text"
+  },
+  {
+    "file": "img/0ae1ae5c5775a044.jpg",
+    "answer": "real",
+    "subject": "vintage car",
+    "title": "Abandoned Vintage Bedford truck and Classic car.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Abandoned_Vintage_Bedford_truck_and_Classic_car.jpg",
+    "license": "CC0 1.0",
+    "author": "Lkabs"
+  },
+  {
+    "file": "img/1007a2125a8ba085.jpg",
+    "answer": "real",
+    "subject": "waterfall",
+    "title": "Cascade de Glandieu, octobre 2019 (1).jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Cascade_de_Glandieu,_octobre_2019_(1).jpg",
+    "license": "CC0 1.0",
+    "author": "Benoît Prieur"
+  },
+  {
+    "file": "img/12bf890ccd6734e4.jpg",
+    "answer": "ai",
+    "subject": "fox",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic wildlife photo of a red fox standing in a snowy meadow, telephoto lens, overcast winter light, no people, no text"
+  },
+  {
+    "file": "img/13dc85a8aada6051.jpg",
+    "answer": "ai",
+    "subject": "butterfly",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic macro photo of a monarch butterfly on a purple flower in a garden, natural light, shallow depth of field, no text"
+  },
+  {
+    "file": "img/16e19a6571053b89.jpg",
+    "answer": "real",
+    "subject": "old barn",
+    "title": "Window on a barn in Färlev.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Window_on_a_barn_in_F%C3%A4rlev.jpg",
+    "license": "CC0 1.0",
+    "author": "W.carter"
+  },
+  {
+    "file": "img/1ba1310a361e4043.jpg",
+    "answer": "real",
+    "subject": "cup of coffee",
+    "title": "Cup of coffee in Café Butter - Prenzlauer Berg, Berlin.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Cup_of_coffee_in_Caf%C3%A9_Butter_-_Prenzlauer_Berg,_Berlin.jpg",
+    "license": "CC0 1.0",
+    "author": "Edward"
+  },
+  {
+    "file": "img/21683fd4e28fd948.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "rainy suburban street with parked car",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Rainy suburban street with parked car. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/22d9379356ca8ca5.jpg",
+    "answer": "ai",
+    "subject": "cathedral interior",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of a gothic cathedral interior, stone columns, stained glass windows, wooden pews, dim natural light, empty, no people, no text"
+  },
+  {
+    "file": "img/24e30ee575fbd54f.jpg",
+    "answer": "real",
+    "subject": "stone bridge",
+    "title": "Çiftekemer Köprüsü, Arhavi, Artvin 2014.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:%C3%87iftekemer_K%C3%B6pr%C3%BCs%C3%BC,_Arhavi,_Artvin_2014.jpg",
+    "license": "CC0 1.0",
+    "author": "Hamdigumus"
+  },
+  {
+    "file": "img/25bed4bda6dd10df.jpg",
+    "answer": "real",
+    "too_perfect": true,
+    "subject": "lavender field",
+    "title": "Lavender field in bloom.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Lavender_field_in_bloom.jpg",
+    "license": "CC0 1.0",
+    "author": "Robert Brink"
+  },
+  {
+    "file": "img/285ce1d6d97f8028.jpg",
+    "answer": "ai",
+    "subject": "mushroom",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic close-up photo of brown wild mushrooms growing on a mossy log in a forest floor, natural light, no text"
+  },
+  {
+    "file": "img/2bc3f9a2c303cedf.jpg",
+    "answer": "ai",
+    "subject": "stone bridge",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of an old arched stone bridge over a slow river in the countryside, cloudy day, natural colors, no people, no text"
+  },
+  {
+    "file": "img/2fd62d46838bf608.jpg",
+    "answer": "real",
+    "subject": "cat",
+    "title": "A mother cat of Meitei domestic cat breed (Meitei house cat variety) suckling her only little newborn baby kitten 02.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:A_mother_cat_of_Meitei_domestic_cat_breed_(Meitei_house_cat_variety)_suckling_her_only_little_newborn_baby_kitten_02.jpg",
+    "license": "CC0 1.0",
+    "author": "Haoreima"
+  },
+  {
+    "file": "img/366b5044c2b90f6f.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "takeout lunch on a desk",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Takeout lunch on a desk. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/36fdce9df116659f.jpg",
+    "answer": "ai",
+    "subject": "city street at night",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of an empty city street at night after rain, neon shop signs reflected on wet pavement, no people, no readable text"
+  },
+  {
+    "file": "img/38f54f647ce74adf.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "cat in a cardboard box",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Cat in a cardboard box. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/39c0e28cf38d422c.jpg",
+    "answer": "real",
+    "subject": "mountain lake",
+    "title": "Lake Mountain Landscape.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Lake_Mountain_Landscape.jpg",
+    "license": "CC0 1.0",
+    "author": "Bonnie Moreland"
+  },
+  {
+    "file": "img/3acd378f1635f188.jpg",
+    "answer": "ai",
+    "subject": "cat",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic snapshot of a tabby cat sitting on a windowsill looking outside, indoor home, soft daylight, no people, no text"
+  },
+  {
+    "file": "img/3e84c88e315108f6.jpg",
+    "answer": "real",
+    "subject": "vintage car",
+    "title": "Vintage Burgundy MG sports Car.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Vintage_Burgundy_MG_sports_Car.jpg",
+    "license": "CC0 1.0",
+    "author": "Lkabs"
+  },
+  {
+    "file": "img/47c729ddadccf719.jpg",
+    "answer": "ai",
+    "subject": "tulips",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of rows of red and yellow tulips in a garden in spring, soft daylight, no people, no text"
+  },
+  {
+    "file": "img/4ab1d1f6f3ea78bd.jpg",
+    "answer": "ai",
+    "subject": "horse",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of a chestnut horse grazing in a pasture with wooden fence, golden hour, no people, no text"
+  },
+  {
+    "file": "img/4facd5bae5df9838.jpg",
+    "answer": "ai",
+    "subject": "vintage car",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic street photo of a vintage 1950s car parked on a city street, chrome details, cloudy day, no people, no readable license plate, no text"
+  },
+  {
+    "file": "img/4fcb11a86bd5748e.jpg",
+    "answer": "real",
+    "subject": "mountain lake",
+    "title": "Smith Mountain Lake February 2025.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Smith_Mountain_Lake_February_2025.jpg",
+    "license": "CC0 1.0",
+    "author": "Bernini123"
+  },
+  {
+    "file": "img/50627e93b8a3079b.jpg",
+    "answer": "real",
+    "subject": "bicycle",
+    "title": "Bicycle 02.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Bicycle_02.jpg",
+    "license": "CC0 1.0",
+    "author": "Shams948"
+  },
+  {
+    "file": "img/53fabfcc4c995764.jpg",
+    "answer": "real",
+    "too_perfect": true,
+    "subject": "kingfisher",
+    "title": "Eisvogel kingfisher.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Eisvogel_kingfisher.jpg",
+    "license": "CC0 1.0",
+    "author": "Frank-2.0"
+  },
+  {
+    "file": "img/54398fe32a13ee6d.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "apartment hallway",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Apartment hallway. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/560ccfa6e2cb20aa.jpg",
+    "answer": "ai",
+    "subject": "harbor boats",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of small fishing boats moored in a harbor with colorful houses behind, morning light, calm water, no people, no text"
+  },
+  {
+    "file": "img/573e3f4af5bd9bf0.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "messy home office desk",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Messy home office desk. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/5bbe2939761c48ca.jpg",
+    "answer": "real",
+    "subject": "autumn forest",
+    "title": "Pine and Birch Forest in Autumn, Szczecin.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Pine_and_Birch_Forest_in_Autumn,_Szczecin.jpg",
+    "license": "CC0 1.0",
+    "author": "Totila123"
+  },
+  {
+    "file": "img/5ea403ac69b35ca5.jpg",
+    "answer": "ai",
+    "subject": "bicycle",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of a bicycle leaning against a brick wall on a quiet street, afternoon light, casual snapshot, no people, no text"
+  },
+  {
+    "file": "img/6342ef0cf669a135.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "gas station forecourt at dusk",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Gas station forecourt at dusk. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/6608b44756aa3983.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "empty commuter train platform on a foggy morning",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Empty commuter train platform on a foggy morning. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/671aedfef57d2349.jpg",
+    "answer": "real",
+    "subject": "pizza",
+    "title": "Pizza 14.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Pizza_14.jpg",
+    "license": "CC0 1.0",
+    "author": "Kurt Kaiser"
+  },
+  {
+    "file": "img/6ac3757bfb155fe3.jpg",
+    "answer": "ai",
+    "subject": "lighthouse",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic amateur travel photo of a white and red lighthouse on rocky coast, overcast sky, slightly hazy, shot on a phone, natural colors, no people, no text"
+  },
+  {
+    "file": "img/6b0f104d7f6a874e.jpg",
+    "answer": "real",
+    "subject": "cup of coffee",
+    "title": "Coffee cup and coffee bean.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Coffee_cup_and_coffee_bean.jpg",
+    "license": "CC0 1.0",
+    "author": "mcfoodie"
+  },
+  {
+    "file": "img/6d72907378ec4aba.jpg",
+    "answer": "ai",
+    "subject": "dog",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of a brown dog lying on grass in a park, tongue out, sunny afternoon, no people, no text"
+  },
+  {
+    "file": "img/6e1e8d3cf929d471.jpg",
+    "answer": "ai",
+    "subject": "beach sunset",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic snapshot of a beach at sunset with gentle waves, wet sand, a few seagulls, slightly tilted horizon, no people, no text"
+  },
+  {
+    "file": "img/6f27213afa88175b.jpg",
+    "answer": "ai",
+    "subject": "teapot",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of an antique porcelain teapot with floral pattern on a wooden table, soft window light, no people, no text"
+  },
+  {
+    "file": "img/6f5793f252dcbf02.jpg",
+    "answer": "real",
+    "subject": "sunflower field",
+    "title": "Sunflower Fields.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Sunflower_Fields.jpg",
+    "license": "CC0 1.0",
+    "author": "Wenchieh Yang"
+  },
+  {
+    "file": "img/6f6ee16592904555.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "unmade bed with phone charger on the nightstand",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Unmade bed with phone charger on the nightstand. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/7141bb3a92971945.jpg",
+    "answer": "real",
+    "subject": "frog",
+    "title": "The Green and Golden Bell Frog.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Green_and_Golden_Bell_Frog.jpg",
+    "license": "CC0 1.0",
+    "author": "Bernard Spragg. NZ"
+  },
+  {
+    "file": "img/7e24401d8d488cb3.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "fridge interior with leftovers",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Fridge interior with leftovers. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/7f81a09b78b10646.jpg",
+    "answer": "ai",
+    "subject": "frog",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic macro photo of a green tree frog sitting on a leaf, droplets of water, natural light, no text"
+  },
+  {
+    "file": "img/80c9a673a16d5de8.jpg",
+    "answer": "real",
+    "subject": "cathedral interior",
+    "title": "Salford Cathedral Memorial Chapel.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Salford_Cathedral_Memorial_Chapel.jpg",
+    "license": "CC0 1.0",
+    "author": "Michael D Beckwith"
+  },
+  {
+    "file": "img/82c4c96624744f0e.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "dog asleep on a worn couch",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Dog asleep on a worn couch. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/8581e3850d97656d.jpg",
+    "answer": "real",
+    "subject": "sunflower field",
+    "title": "Sunflower field at sunset.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Sunflower_field_at_sunset.jpg",
+    "license": "CC0 1.0",
+    "author": "Summer Stock"
+  },
+  {
+    "file": "img/872acdf9dc4bb99e.jpg",
+    "answer": "real",
+    "subject": "fox",
+    "title": "Red fox in yard, Charlton MA 2025-12-26.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Red_fox_in_yard,_Charlton_MA_2025-12-26.jpg",
+    "license": "CC0 1.0",
+    "author": "Peter Cooper Jr."
+  },
+  {
+    "file": "img/88f74e319c5850b7.jpg",
+    "answer": "real",
+    "subject": "pizza",
+    "title": "Pizza 15.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Pizza_15.jpg",
+    "license": "CC0 1.0",
+    "author": "Kurt Kaiser"
+  },
+  {
+    "file": "img/893454cb18aefca2.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "dirty dishes in a stainless kitchen sink",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Dirty dishes in a stainless kitchen sink. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/8dd1bab2a3cb7bd0.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "pet food and water bowls on a kitchen mat",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Pet food and water bowls on a kitchen mat. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/8df344153a5c69cb.jpg",
+    "answer": "real",
+    "subject": "teapot",
+    "title": "Teapot MET DP207945.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Teapot_MET_DP207945.jpg",
+    "license": "CC0 1.0",
+    "author": "American Pottery Manufacturing Company"
+  },
+  {
+    "file": "img/933ea502be47dfe1.jpg",
+    "answer": "real",
+    "subject": "fox",
+    "title": "A fox in a city park on a lark.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:A_fox_in_a_city_park_on_a_lark.jpg",
+    "license": "CC0 1.0",
+    "author": "Terry.grignon"
+  },
+  {
+    "file": "img/938fb729a9597d1e.jpg",
+    "answer": "real",
+    "subject": "lighthouse",
+    "title": "Lighthouse Chania evening sun.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Lighthouse_Chania_evening_sun.jpg",
+    "license": "CC0 1.0",
+    "author": "Jebulon"
+  },
+  {
+    "file": "img/9748cd9d45e88f14.jpg",
+    "answer": "real",
+    "too_perfect": true,
+    "subject": "aurora borealis",
+    "title": "PIXNIO-1094468-aurora borealis.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:PIXNIO-1094468-aurora_borealis.jpg",
+    "license": "CC0 1.0",
+    "author": "Yuliya"
+  },
+  {
+    "file": "img/98864dc0cdc6d435.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "office break room counter with coffee maker and microwave",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Office break room counter with coffee maker and microwave. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/9940ada0c985c891.jpg",
+    "answer": "ai",
+    "subject": "autumn forest",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of a forest trail in autumn with orange and yellow leaves on the ground, soft overcast light, no people, no text"
+  },
+  {
+    "file": "img/997a0cd829ce9ae0.jpg",
+    "answer": "real",
+    "subject": "snowy mountains",
+    "title": "Snowy Annapurna Range - panorama.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Snowy_Annapurna_Range_-_panorama.jpg",
+    "license": "CC0 1.0",
+    "author": "Ali Sabbagh"
+  },
+  {
+    "file": "img/9a8e22a799b5b565.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "highway rest area",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Highway rest area. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/9ae4d1785c7fc067.jpg",
+    "answer": "real",
+    "subject": "stone bridge",
+    "title": "Kemer Köprü, Fırtına Deresi, Çamlıhemşin, Rize 2014.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Kemer_K%C3%B6pr%C3%BC,_F%C4%B1rt%C4%B1na_Deresi,_%C3%87aml%C4%B1hem%C5%9Fin,_Rize_2014.jpg",
+    "license": "CC0 1.0",
+    "author": "Hamdigumus"
+  },
+  {
+    "file": "img/9b4be23f6a1c9188.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "dog park on a gray day",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Dog park on a gray day. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/a07d8f74a4ed0cc7.jpg",
+    "answer": "real",
+    "subject": "frog",
+    "title": "Bufo marinus in Venezuela.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Bufo_marinus_in_Venezuela.jpg",
+    "license": "CC0 1.0",
+    "author": "Wilfredor"
+  },
+  {
+    "file": "img/a41894dbc625345f.jpg",
+    "answer": "ai",
+    "subject": "cup of coffee",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of a cup of coffee with latte art on a cafe table next to a spoon, shallow depth of field, natural light, no people, no text"
+  },
+  {
+    "file": "img/aaa54f963d92b524.jpg",
+    "answer": "real",
+    "subject": "teapot",
+    "title": "Teapot MET DP-13600-002.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Teapot_MET_DP-13600-002.jpg",
+    "license": "CC0 1.0",
+    "author": "Earls of Plymouth"
+  },
+  {
+    "file": "img/ac7d7d7042b4db00.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "living room corner with TV stand and tangled cables",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Living room corner with tv stand and tangled cables. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/af82a06988f25191.jpg",
+    "answer": "real",
+    "subject": "butterfly",
+    "title": "Dead butterfly on pavement.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Dead_butterfly_on_pavement.jpg",
+    "license": "CC0 1.0",
+    "author": "999real"
+  },
+  {
+    "file": "img/b395415686247c13.jpg",
+    "answer": "real",
+    "subject": "city street at night",
+    "title": "Chateau Frontenac at dusk in Quebec City.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Chateau_Frontenac_at_dusk_in_Quebec_City.jpg",
+    "license": "CC0 1.0",
+    "author": "Wilfredor"
+  },
+  {
+    "file": "img/b3d0843ef2531ca0.jpg",
+    "answer": "real",
+    "subject": "library shelves",
+    "title": "Library shelves iitd.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Library_shelves_iitd.jpg",
+    "license": "CC0 1.0",
+    "author": "Scntst0009"
+  },
+  {
+    "file": "img/bc294829dc646bd3.jpg",
+    "answer": "ai",
+    "subject": "bowl of fruit",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of a ceramic bowl of fruit with apples, bananas and oranges on a kitchen counter, natural daylight, casual snapshot, no people, no text"
+  },
+  {
+    "file": "img/be86851c832ea549.jpg",
+    "answer": "ai",
+    "subject": "bread loaf",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of a rustic sourdough bread loaf on a cooling rack, flour dusted crust, bakery counter, warm light, no people, no text"
+  },
+  {
+    "file": "img/c188e5ca91818a72.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "bus stop shelter",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Bus stop shelter. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/c45b672812bd3ddb.jpg",
+    "answer": "real",
+    "subject": "mushroom",
+    "title": "Iconic Toadstool on Kaien Island.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Iconic_Toadstool_on_Kaien_Island.jpg",
+    "license": "CC0 1.0",
+    "author": "Extemporalist"
+  },
+  {
+    "file": "img/c6b19612976c12cb.jpg",
+    "answer": "real",
+    "subject": "harbor boats",
+    "title": "Boats in harbor - Picton, NZ - DSC00341.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Boats_in_harbor_-_Picton,_NZ_-_DSC00341.jpg",
+    "license": "CC0 1.0",
+    "author": "Daderot"
+  },
+  {
+    "file": "img/cae1268965bf9f0c.jpg",
+    "answer": "real",
+    "subject": "lighthouse",
+    "title": "Lighthouse, harbor Saint-Martin-de-Ré, Ré island, Charente-Maritime, France.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Lighthouse,_harbor_Saint-Martin-de-R%C3%A9,_R%C3%A9_island,_Charente-Maritime,_France.jpg",
+    "license": "CC0 1.0",
+    "author": "Jebulon"
+  },
+  {
+    "file": "img/d28512d985666462.jpg",
+    "answer": "ai",
+    "subject": "sunflower field",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of a large sunflower field under a partly cloudy sky, summer, natural colors, no people, no text"
+  },
+  {
+    "file": "img/d2bb0f0eb89c9f71.jpg",
+    "answer": "ai",
+    "subject": "lake pier",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of a wooden pier stretching into a misty lake at dawn, muted colors, no people, no text"
+  },
+  {
+    "file": "img/d32f00fe8cea5aa2.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "cluttered kitchen counter",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Cluttered kitchen counter. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/d6f18629eb99a720.jpg",
+    "answer": "real",
+    "subject": "tulips",
+    "title": "צבעונים.JPG",
+    "source": "https://commons.wikimedia.org/wiki/File:%D7%A6%D7%91%D7%A2%D7%95%D7%A0%D7%99%D7%9D.JPG",
+    "license": "CC0 1.0",
+    "author": "Dina L"
+  },
+  {
+    "file": "img/da3cffc0faedc647.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "strip mall storefronts on a cloudy day",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Strip mall storefronts on a cloudy day. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/dc0813249b841887.jpg",
+    "answer": "real",
+    "too_perfect": true,
+    "subject": "jellyfish",
+    "title": "Lion's mane jellyfish in Gullmarn fjord at Sämstad 8.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Lion%27s_mane_jellyfish_in_Gullmarn_fjord_at_S%C3%A4mstad_8.jpg",
+    "license": "CC0 1.0",
+    "author": "W.carter"
+  },
+  {
+    "file": "img/dc58ff86d305e328.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "cluttered garage",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Cluttered garage. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/ddcc824a7308aeee.jpg",
+    "answer": "real",
+    "subject": "autumn forest",
+    "title": "Autumn Forest Wet Bark.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Autumn_Forest_Wet_Bark.jpg",
+    "license": "CC0 1.0",
+    "author": "Martin Vorel"
+  },
+  {
+    "file": "img/df07f10870913cd4.jpg",
+    "answer": "ai",
+    "subject": "old barn",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of a weathered red wooden barn in a green field with a fence, morning light, rural farmland, no people, no text"
+  },
+  {
+    "file": "img/e1b5d792d28726ac.jpg",
+    "answer": "ai",
+    "subject": "waterfall",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of a tall waterfall in a mossy green gorge, long exposure, wet rocks, natural light, no people, no text"
+  },
+  {
+    "file": "img/e47de0c14d3b3195.jpg",
+    "answer": "ai",
+    "subject": "owl",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic wildlife photo of a barn owl perched on a wooden fence post at dusk, telephoto lens, blurred background, no people, no text"
+  },
+  {
+    "file": "img/e4bd695587057bb9.jpg",
+    "answer": "real",
+    "subject": "dog",
+    "title": "Dog in Chacachacare.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Dog_in_Chacachacare.jpg",
+    "license": "CC0 1.0",
+    "author": "Wilfredor"
+  },
+  {
+    "file": "img/e85f950f745198f0.jpg",
+    "answer": "real",
+    "subject": "horse",
+    "title": "Horse in Tárcoles River.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Horse_in_T%C3%A1rcoles_River.jpg",
+    "license": "CC0 1.0",
+    "author": "Bernard Gagnon"
+  },
+  {
+    "file": "img/eb5f4c5a4628a342.jpg",
+    "answer": "real",
+    "too_perfect": true,
+    "subject": "rainbow eucalyptus",
+    "title": "Scaly-breasted lorikeet in Callistemon viminalis River of Life Church 240 Hamilton Rd Chermside P1170530.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Scaly-breasted_lorikeet_in_Callistemon_viminalis_River_of_Life_Church_240_Hamilton_Rd_Chermside_P1170530.jpg",
+    "license": "CC0 1.0",
+    "author": "John Robert McPherson"
+  },
+  {
+    "file": "img/ebe304bc34bb0d23.jpg",
+    "answer": "real",
+    "subject": "bicycle",
+    "title": "Bike on a snowy street in Quebec City at night.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Bike_on_a_snowy_street_in_Quebec_City_at_night.jpg",
+    "license": "CC0 1.0",
+    "author": "Wilfredor"
+  },
+  {
+    "file": "img/ed5f2ef7698a8473.jpg",
+    "answer": "real",
+    "subject": "beach sunset",
+    "title": "Juan Griego Sunset.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Juan_Griego_Sunset.jpg",
+    "license": "CC0 1.0",
+    "author": "Wilfredor"
+  },
+  {
+    "file": "img/f554053cefe19ba2.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "residential driveway after light snow",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Residential driveway after light snow. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/f6fd703c3efed6c1.jpg",
+    "answer": "ai",
+    "subject": "sushi",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of a plate of sushi rolls and nigiri on a dark table with chopsticks, restaurant lighting, no people, no text"
+  },
+  {
+    "file": "img/f825584d9829793d.jpg",
+    "answer": "ai",
+    "subject": "snowy mountains",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of snowy alpine mountain peaks with a small wooden hut in the valley, bright winter day, no people, no text"
+  },
+  {
+    "file": "img/fad64dd5cf81e640.jpg",
+    "answer": "ai",
+    "hard": true,
+    "subject": "half-empty supermarket parking lot",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Half-empty supermarket parking lot. Boring, imperfect phone photo: candid everyday scene, natural light, slight blur/noise, off-center framing, no glossy look, no text, no people, no hands or faces."
+  },
+  {
+    "file": "img/fbe0e1f41bfd4106.jpg",
+    "answer": "real",
+    "subject": "dog",
+    "title": "Mixed-breed dogs in Serles.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Mixed-breed_dogs_in_Serles.jpg",
+    "license": "CC0 1.0",
+    "author": "Wilfredor"
+  },
+  {
+    "file": "img/ff90be46a320b987.jpg",
+    "answer": "ai",
+    "subject": "library shelves",
+    "source": "Generated for this project with Grok Imagine",
+    "license": "CC0 1.0 (dedicated by the project)",
+    "author": "Slop or Not project",
+    "prompt": "Photorealistic photo of tall wooden library shelves full of old books in a historic reading room, warm lamps, empty room, no people, no readable text"
+  }
+]

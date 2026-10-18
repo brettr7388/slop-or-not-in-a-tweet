@@ -1,0 +1,26 @@
+{
+  "name": "slop-or-not-in-a-tweet",
+  "version": "0.1.0",
+  "description": "AI or Real? A 10-round image game that plays inside an X post.",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "wrangler dev",
+    "db:migrate:local": "wrangler d1 migrations apply slop-or-not --local",
+    "db:migrate:remote": "wrangler d1 migrations apply slop-or-not --remote",
+    "deploy": "wrangler deploy",
+    "build:images": "node scripts/build-images.mjs && node scripts/build-share.mjs && node scripts/build-credits.mjs",
+    "test": "node --test test/*.test.mjs",
+    "test:e2e": "node scripts/e2e.mjs",
+    "seed:demo": "node scripts/seed-demo.mjs"
+  },
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "playwright": "^1.64.1",
+    "sharp": "^0.35.5",
+    "wrangler": "^4.151.1"
+  },
+  "private": true
+}

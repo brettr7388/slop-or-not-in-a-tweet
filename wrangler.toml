@@ -1,0 +1,17 @@
+name = "slop-or-not"
+main = "src/worker.js"
+compatibility_date = "2025-09-01"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "slop-or-not"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+[vars]
+# Your X handle for the twitter:site tag, e.g. "@yourhandle". Leave empty to omit the tag.
+X_HANDLE = ""
