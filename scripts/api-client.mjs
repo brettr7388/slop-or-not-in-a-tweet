@@ -1,14 +1,17 @@
 import { DECK } from '../src/deck.js';
+import { isLocalUrl } from './local-only.mjs';
 
 const ANSWER = new Map(DECK.map((d) => [`/${d.f}`, d.a]));
 const HARD = new Set(DECK.filter((d) => d.h).map((d) => `/${d.f}`));
 const flip = (a) => (a === 'ai' ? 'real' : 'ai');
 
 export function client(base) {
+  // Fake client IPs only work against wrangler dev; Cloudflare's edge rejects a client-set cf-connecting-ip.
+  const local = isLocalUrl(base);
   async function call(method, path, body, ip = '198.51.100.10') {
     const res = await fetch(`${base}${path}`, {
       method,
-      headers: { 'content-type': 'application/json', 'cf-connecting-ip': ip },
+      headers: { 'content-type': 'application/json', ...(local ? { 'cf-connecting-ip': ip } : {}) },
       body: body === undefined ? undefined : JSON.stringify(body),
     });
     return { status: res.status, body: await res.json() };

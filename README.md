@@ -12,7 +12,7 @@ After a game, **Level 2** is offered. It looks the same, but all 10 images are A
 |---|---|---|---|---|
 | ![l2 round](docs/l2-round.png) | ![l2 locked](docs/l2-locked.png) | ![l2 end](docs/l2-end.png) | ![l2 board](docs/l2-leaderboard.png) | ![l2 share](docs/l2-share-card.png) |
 
-Image credits: [CREDITS.md](CREDITS.md).
+Live: **https://slop-or-not.brettr7388.workers.dev/play** · Image credits: [CREDITS.md](CREDITS.md).
 
 ## How the in-tweet card works
 
@@ -101,6 +101,11 @@ Screenshots go to `screenshots/`.
 4. Optional: `npx wrangler secret put IP_SALT` with any random string (the default salt is public, which only matters if the D1 data leaks), and set `X_HANDLE` in `wrangler.toml` to your `@handle` for the `twitter:site` tag.
 5. Ship it: `npm run deploy`. Add a custom domain in the Cloudflare dashboard if you want one. The card tags use whatever origin the request came in on, so nothing else needs editing.
 6. Run the two `curl` commands above against the live URL, then post `https://YOUR_DOMAIN/play` from a test account first.
+7. Optional smoke test: `BASE_URL=https://YOUR_DOMAIN node scripts/e2e.mjs --allow-remote --no-guards` plays one game of each level and writes two leaderboard rows. Delete them afterwards. Live screenshots from that run are in `docs/live/`.
+
+### Deploying without wrangler (REST API)
+
+The live copy was deployed over the Cloudflare REST API rather than `wrangler deploy`, and that path could not use the Workers static-asset upload. For that case `deploy/entry.js` wraps the same Worker: when there is no `ASSETS` binding, it serves `public/` from a D1 table, `static_assets`, through `deploy/d1-assets.js`. `deploy/upload-assets.mjs` fills that table. Bundle the entry with `npx wrangler deploy deploy/entry.js --dry-run --outdir dist`, then upload `dist/entry.js` with a `DB` D1 binding and an `IP_SALT` secret. A normal `wrangler deploy` ignores all of this.
 
 ## Images and credits
 
